@@ -597,226 +597,465 @@ class CDN:
         PullZoneID,
         OriginUrl,
         AllowedReferrers,
+        BlockedReferrers,
         BlockedIps,
-        EnableCacheSlice,
         EnableGeoZoneUS,
         EnableGeoZoneEU,
         EnableGeoZoneASIA,
         EnableGeoZoneSA,
         EnableGeoZoneAF,
+        BlockRootPathAccess,
+        BlockPostRequests,
+        EnableQueryStringOrdering,
+        EnableWebpVary,
+        EnableAvifVary,
+        EnableMobileVary,
+        EnableCountryCodeVary,
+        EnableHostnameVary,
+        EnableCacheSlice,
         ZoneSecurityEnabled,
-        IncludeHashRemoteIP,
+        ZoneSecurityIncludeHashRemoteIP,
         IgnoreQueryStrings,
         MonthlyBandwidthLimit,
-        OriginHeaderExtensions,
-        EnableOriginHeader,
-        BlockRootPathAccess,
-        EnableWebpVary,
-        EnableHostnameVary,
-        EnableCountryCodeVary,
-        EnableLogging,
+        AccessControlOriginHeaderExtensions,
+        EnableAccessControlOriginHeader,
         DisableCookies,
         BudgetRedirectedCountries,
         BlockedCountries,
-        EnableOriginShield,
-        EnableQueryStringOrdering,
-        CacheErrorResponses,
-        OriginShieldZoneCode,
-        AddCanonicalHeader,
         CacheControlMaxAgeOverride,
+        CacheControlBrowserMaxAgeOverride,
         AddHostHeader,
+        AddCanonicalHeader,
+        EnableLogging,
+        LoggingIPAnonymizationEnabled,
+        PermaCacheStorageZoneId,
         AWSSigningEnabled,
         AWSSigningKey,
         AWSSigningRegionName,
         AWSSigningSecret,
+        EnableOriginShield,
+        OriginShieldZoneCode,
         EnableTLS1,
-        LoggingSaveToStorage,
-        LoggingStorageZoneId,
+        EnableTLS1_1,
+        CacheErrorResponses,
+        VerifyOriginSSL,
         LogForwardingEnabled,
         LogForwardingHostname,
         LogForwardingPort,
         LogForwardingToken,
+        LogForwardingProtocol,
+        LoggingSaveToStorage,
+        LoggingStorageZoneId,
+        FollowRedirects,
+        ConnectionLimitPerIPCount,
+        RequestLimit,
+        WAFEnabled,
+        WAFDisabledRuleGroups,
+        WAFDisabledRules,
+        WAFEnableRequestHeaderLogging,
+        WAFRequestHeaderIgnores,
+        ErrorPageEnableCustomCode,
+        ErrorPageCustomCode,
+        ErrorPageEnableStatuspageWidget,
+        ErrorPageStatuspageCode,
+        ErrorPageWhitelabel,
+        OptimizerEnabled,
+        OptimizerDesktopMaxWidth,
+        OptimizerMobileMaxWidth,
+        OptimizerImageQuality,
+        OptimizerMobileImageQuality,
+        OptimizerEnableWebP,
+        OptimizerEnableManipulationEngine,
+        OptimizerMinifyCSS,
+        OptimizerMinifyJavaScript,
+        OptimizerWatermarkEnabled,
+        OptimizerWatermarkUrl,
+        OptimizerWatermarkPosition,
+        OptimizerWatermarkOffset,
+        OptimizerWatermarkMinImageSize,
+        OptimizerAutomaticOptimizationEnabled,
+        OptimizerClasses,
+        OptimizerForceClasses,
+        Type,
+        OriginRetries,
+        OriginConnectTimeout,
+        OriginResponseTimeout,
+        UseStaleWhileUpdating,
+        UseStaleWhileOffline,
+        OriginRetry5XXResponses,
+        OriginRetryConnectionTimeout,
+        OriginRetryResponseTimeout,
+        OriginRetryDelay,
+        QueryStringVaryParameters,
+        OriginShieldEnableConcurrencyLimit,
+        OriginShieldMaxConcurrentRequests,
+        EnableCookieVary,
+        CookieVaryParameters,
+        EnableSafeHop,
+        OriginShieldQueueMaxWaitTime,
+        OriginShieldMaxQueuedRequests,
+        UseBackgroundUpdate,
+        EnableAutoSSL,
+        LogAnonymizationType,
+        LogFormat,
+        LogForwardingFormat,
+        ShieldDDosProtectionType,
+        ShieldDDosProtectionEnabled,
     ):
-        """
+
+        """ 
         This function updates the pullzone with the given ID
 
         Parameters
         ----------
-        PullZoneID                    : int64
-                                        The ID (number) of the
-                                        pullzone to update
-
-        OriginUrl                     : string
-                                        The origin URL of the pull zone
-
-        AllowedReferrers              : array
-
-        BlockedIps                    : array
-
-        EnableCacheSlice              : boolean
-                                        If enabled, the cached data will be
-                                        stored in small chunks and allow the
-                                        server to process byte range requests
-                                        even for uncached files.
-
-        EnableGeoZoneUS               : boolean
-                                        If enabled, the zone will serve data
-                                        through our United States PoPs.
-
-        EnableGeoZoneEU               : boolean
-                                        If enabled, the zone will serve data
-                                        through our European PoPs.
-
-        EnableGeoZoneASIA             : boolean
-                                        If enabled, the zone will serve data
-                                        through our Asian and Oceanian PoPs.
-
-        EnableGeoZoneSA               : boolean
-                                        If enabled, the zone will serve data
-                                        through our South American PoPs.
-
-        EnableGeoZoneAF               : boolean
-                                        If enabled, the zone will serve data
-                                        through our African PoPs.
-
-        ZoneSecurityEnabled           : boolean
-                                        If enabled, the zone will be secured
-                                        using token authentication.
-
-        IncludeHashRemoteIP : boolean
-                                          If enabled, the zone token
-                                          authentication hash will
-                                          include the remote IP.
-
-        IgnoreQueryStrings            : boolean
-                                        If enabled, the URLs will ignore any
-                                        kind of query strings when looking
-                                        for and storing cached files
-
-        MonthlyBandwidthLimit         : number
-                                        Set the monthly pull zone
-                                        bandwidth limit in bytes.
-
-        OriginHeaderExtensions        : array
-
-        EnableOriginHeader            : boolean
-                                        If enabled the CORS headers will be
-                                        returned with the requests to CORS
-                                        enabled extensions.
-
-        BlockRootPathAccess           : boolean
-                                        Set to true if you want to block all
-                                        requests going to root directories
-                                        instead of files.
-
-        EnableWebpVary                : boolean
-                                        If enabled, the zone will dynamically
-                                        vary the cached based on WebP support
-
-        EnableHostnameVary            : boolean
-                                        Set to true if the cache files should
-                                        vary based on the request hostname
-
-        EnableCountryCodeVary         : boolean
-                                        Set to true if the cache files should
-                                        vary based on the country code
-
-        EnableLogging                 : boolean
-                                        Set to true if the logging for the
-                                        zone should be enabled
-
-        DisableCookies                : boolean
-                                        If true, the cookies are disabled
-                                        for the pull zone
-
-        BudgetRedirectedCountries     : array
-
-        BlockedCountries              : array
-
-        EnableOriginShield            : boolean
-                                        Set to true to enable the origin
-                                        shield for this zone
-
-        EnableQueryStringOrdering     : boolean
-                                        Set to true to enable query string
-                                        sorting when caching files
-
-        CacheErrorResponses           : boolean
-                                        Set to true to temporary cache error
-                                        responses from the origins erver
-
-        OriginShieldZoneCode          : string
-                                        The zone code of the origin
-                                        shield location
-
-        AddCanonicalHeader            : boolean
-                                        True if the zone should return an
-                                        automatically generated canonical
-                                        header
-
-        CacheControlMaxAgeOverride    : number
-                                        Set the cache control override,
-                                        set to 0 to respect the origin headers
-
-        CacheControlBrowserMaxAgeOverride : number
-                                            Set the browser cache control
-                                            override,set to -1 for this
-                                            to match the internal cache-control
-
-        AddHostHeader                 : boolean
-                                        If enabled, the original host header
-                                        of the request will be forwarded to
-                                        the origin server.
-
-        AWSSigningEnabled             : boolean
-                                        If enabled, this will send Amazon S3
-                                        authentication headers back to
-                                        the origin.
-
-        AWSSigningKey                 : string
-                                        The Amazon S3 signing key used
-                                        to sign origin requests
-
-        AWSSigningRegionName          : string
-                                        The Amazon S3 region name used
-                                        to sign origin requests
-
-        AWSSigningSecret              : string
-                                        The Amazon S3 secret used to
-                                        sign origin requests
-
-        EnableTLS1                    : boolean
-                                        True if the zone should allow legacy
-                                        TLS 1 connections
-
-        EnableTLS1_1                  : boolean
-                                        True if the zone should allow legacy
-                                        TLS 1.1 connections
-
-        LoggingSaveToStorage          : boolean
-                                        True to enable permanent log storage.
-                                        This must be sent together with a
-                                        valid LoggingStorageZoneId property.
-
-        LoggingStorageZoneId          : number
-                                        The ID of the permanent log
-                                        storage zone.
-
-        LogForwardingEnabled          : boolean
-                                        True if the log forwarding feature
-                                        should be enabled.
-
-        LogForwardingHostname         : string
-                                        The hostname of the log forwarding
-                                        endpoint.
-
-        LogForwardingPort             : number
-                                        The port of the log forwarding
-                                        endpoint.
-
-        LogForwardingToken            : string
-                                        The authentication token for the log
-                                        forwarding endpoint.
+        PullZoneID                            : int64
+                                                The ID of the Pull Zone that should
+                                                be updated
+        OriginUrl                             : string
+                                                Sets the origin URL of the Pull Zone
+        AllowedReferrers                      : array of strings
+                                                Sets the list of referrer hostnames
+                                                that are allowed to access the pull
+                                                zone. Requests containing the header
+                                                Referer: hostname that is not on the
+                                                list will be rejected. If empty, all
+                                                the referrers are allowed
+        BlockedReferrers                      : array of strings
+                                                Sets the list of referrer hostnames
+                                                that are blocked from accessing the
+                                                pull zone.
+        BlockedIps                            : array of strings
+                                                Sets the list of IPs that are
+                                                blocked from accessing the pull
+                                                zone. Requests coming from the
+                                                following IPs will be rejected. If
+                                                empty, all the IPs will be allowed
+        EnableGeoZoneUS                       : boolean
+                                                Determines if the delivery from the
+                                                North America region should be
+                                                enabled for this pull zone
+        EnableGeoZoneEU                       : boolean
+                                                Determines if the delivery from the
+                                                Europe region should be enabled for
+                                                this pull zone
+        EnableGeoZoneASIA                     : boolean
+                                                Determines if the delivery from the
+                                                Asia / Oceania regions should be
+                                                enabled for this pull zone
+        EnableGeoZoneSA                       : boolean
+                                                Determines if the delivery from the
+                                                South America region should be
+                                                enabled for this pull zone
+        EnableGeoZoneAF                       : boolean
+                                                Determines if the delivery from the
+                                                Africa region should be enabled for
+                                                this pull zone
+        BlockRootPathAccess                   : boolean
+                                                Determines if the zone should block
+                                                requests to the root of the zone.
+        BlockPostRequests                     : boolean
+                                                Determines if the POST requests to
+                                                this zone should be rejected.
+        EnableQueryStringOrdering             : boolean
+                                                Determines if the query string
+                                                ordering should be enabled.
+        EnableWebpVary                        : boolean
+                                                Determines if the WebP Vary feature
+                                                should be enabled.
+        EnableAvifVary                        : boolean
+                                                Determines if the AVIF Vary feature
+                                                should be enabled.
+        EnableMobileVary                      : boolean
+                                                Determines if the Mobile Vary
+                                                feature is enabled.
+        EnableCountryCodeVary                 : boolean
+                                                Determines if the Country Code Vary
+                                                feature should be enabled.
+        EnableHostnameVary                    : boolean
+                                                Determines if the Hostname Vary
+                                                feature should be enabled.
+        EnableCacheSlice                      : boolean
+                                                Determines if cache slicing
+                                                (Optimize for video) should be
+                                                enabled for this zone
+        ZoneSecurityEnabled                   : boolean
+                                                Determines if the zone token
+                                                authentication security should be
+                                                enabled
+        ZoneSecurityIncludeHashRemoteIP       : boolean
+                                                Determines if the token
+                                                authentication IP validation should
+                                                be enabled
+        IgnoreQueryStrings                    : boolean
+                                                Determines if the Pull Zone should
+                                                ignore query strings when serving
+                                                cached objects (Vary by Query
+                                                String)
+        MonthlyBandwidthLimit                 : int64
+                                                Sets the monthly limit of bandwidth
+                                                in bytes that the pullzone is
+                                                allowed to use
+        AccessControlOriginHeaderExtensions   : array of strings
+                                                Sets the list of extensions that
+                                                will return the CORS headers
+        EnableAccessControlOriginHeader       : boolean
+                                                Determines if CORS headers should be
+                                                enabled
+        DisableCookies                        : boolean
+                                                Determines if the Pull Zone should
+                                                automatically remove cookies from
+                                                the responses
+        BudgetRedirectedCountries             : array of strings
+                                                Sets the list of two letter Alpha2
+                                                country codes that will be
+                                                redirected to the cheapest possible
+                                                region
+        BlockedCountries                      : array of strings
+                                                Sets the list of two letter Alpha2
+                                                country codes that will be blocked
+                                                from accessing the zone
+        CacheControlMaxAgeOverride            : int64
+                                                Sets the cache control override
+                                                setting for this zone
+        CacheControlBrowserMaxAgeOverride     : int64
+                                                Sets the browser cache control
+                                                override setting for this zone
+        AddHostHeader                         : boolean
+                                                Determines if the zone should
+                                                forward the requested host header to
+                                                the origin
+        AddCanonicalHeader                    : boolean
+                                                Determines if the canonical header
+                                                should be added by this zone
+        EnableLogging                         : boolean
+                                                Determines if the logging should be
+                                                enabled for this zone
+        LoggingIPAnonymizationEnabled         : boolean
+                                                Determines if the log anonoymization
+                                                should be enabled
+        PermaCacheStorageZoneId               : int64
+                                                The ID of the storage zone that
+                                                should be used as the Perma-Cache
+        AWSSigningEnabled                     : boolean
+                                                Determines if the AWS signing should
+                                                be enabled or not
+        AWSSigningKey                         : string
+                                                Sets the AWS signing key
+        AWSSigningRegionName                  : string
+                                                Sets the AWS signing region name
+        AWSSigningSecret                      : string
+                                                Sets the AWS signing secret key
+        EnableOriginShield                    : boolean
+                                                Determines if the origin shield
+                                                should be enabled
+        OriginShieldZoneCode                  : string
+                                                Determines the zone code where the
+                                                origin shield should be set up
+        EnableTLS1                            : boolean
+                                                Determines if the TLS 1 should be
+                                                enabled on this zone
+        EnableTLS1_1                          : boolean
+                                                Determines if the TLS 1.1 should be
+                                                enabled on this zone
+        CacheErrorResponses                   : boolean
+                                                Determines if the cache error
+                                                responses should be enabled on the
+                                                zone
+        VerifyOriginSSL                       : boolean
+                                                Determines if the SSL certificate
+                                                should be verified when connecting
+                                                to the origin
+        LogForwardingEnabled                  : boolean
+                                                Sets the log forwarding token for
+                                                the zone
+        LogForwardingHostname                 : string
+                                                Sets the log forwarding destination
+                                                hostname for the zone
+        LogForwardingPort                     : int32
+                                                Sets the log forwarding port for the
+                                                zone
+        LogForwardingToken                    : string
+                                                Sets the log forwarding token for
+                                                the zone
+        LogForwardingProtocol                 : integer
+                                                Sets the log forwarding protocol
+                                                type
+        LoggingSaveToStorage                  : boolean
+                                                Determines if the logging permanent
+                                                storage should be enabled
+        LoggingStorageZoneId                  : int64
+                                                Sets the Storage Zone id that should
+                                                contain the logs from this Pull Zone
+        FollowRedirects                       : boolean
+                                                Determines if the zone should follow
+                                                redirects return by the oprigin and
+                                                cache the response
+        ConnectionLimitPerIPCount             : int32
+                                                Determines the maximum number of
+                                                connections per IP that will be
+                                                allowed to connect to this Pull Zone
+        RequestLimit                          : int32
+                                                Determines the maximum number of
+                                                requests per second that will be
+                                                allowed to connect to this Pull Zone
+        WAFEnabled                            : boolean
+                                                Determines if WAF should be enabled
+                                                on the zone
+        WAFDisabledRuleGroups                 : array of strings
+                                                Determines the enabled WAF rule
+                                                groups
+        WAFDisabledRules                      : array of strings
+                                                Determines the disabled WAF rules
+        WAFEnableRequestHeaderLogging         : boolean
+                                                Determines if WAF should enable
+                                                request headers logging
+        WAFRequestHeaderIgnores               : array of strings
+                                                Determines the list of headers that
+                                                will be ignored in the WAF logs
+        ErrorPageEnableCustomCode             : boolean
+                                                Determines if custom error page code
+                                                should be enabled.
+        ErrorPageCustomCode                   : string
+                                                Contains the custom error page code
+                                                that will be returned
+        ErrorPageEnableStatuspageWidget       : boolean
+                                                Determines if the statuspage widget
+                                                should be displayed on the error
+                                                pages
+        ErrorPageStatuspageCode               : string
+                                                The statuspage code that will be
+                                                used to build the status widget
+        ErrorPageWhitelabel                   : boolean
+                                                Determines if the error pages should
+                                                be whitelabel or not
+        OptimizerEnabled                      : boolean
+                                                Determines if the optimizer should
+                                                be enabled for this zone
+        OptimizerDesktopMaxWidth              : int32
+                                                Determines the maximum automatic
+                                                image size for desktop clients
+        OptimizerMobileMaxWidth               : int32
+                                                Determines the maximum automatic
+                                                image size for mobile clients
+        OptimizerImageQuality                 : int32
+                                                Determines the image quality for
+                                                desktop clients
+        OptimizerMobileImageQuality           : int32
+                                                Determines the image quality for
+                                                mobile clients
+        OptimizerEnableWebP                   : boolean
+                                                Determines if the WebP optimization
+                                                should be enabled
+        OptimizerEnableManipulationEngine     : boolean
+                                                Determines the image manipulation
+                                                should be enabled
+        OptimizerMinifyCSS                    : boolean
+                                                Determines if the CSS minifcation
+                                                should be enabled
+        OptimizerMinifyJavaScript             : boolean
+                                                Determines if the JavaScript
+                                                minifcation should be enabled
+        OptimizerWatermarkEnabled             : boolean
+                                                Determines if image watermarking
+                                                should be enabled
+        OptimizerWatermarkUrl                 : string
+                                                Sets the URL of the watermark image
+        OptimizerWatermarkPosition            : integer
+                                                Sets the position of the watermark
+                                                image
+        OptimizerWatermarkOffset              : double
+                                                Sets the offset of the watermark
+                                                image
+        OptimizerWatermarkMinImageSize        : int32
+                                                Sets the minimum image size to which
+                                                the watermark will be added
+        OptimizerAutomaticOptimizationEnabled : boolean
+                                                Determines if the automatic image
+                                                optimization should be enabled
+        OptimizerClasses                      : array of objects
+                                                Determines the list of optimizer
+                                                classes
+        OptimizerForceClasses                 : boolean
+                                                Determines if the optimizer classes
+                                                should be forced
+        Type                                  : integer
+                                                The type of the pull zone. Premium =
+                                                0, Volume = 1
+        OriginRetries                         : int32
+                                                The number of retries to the origin
+                                                server
+        OriginConnectTimeout                  : int32
+                                                The amount of seconds to wait when
+                                                connecting to the origin. Otherwise
+                                                the request will fail or retry.
+        OriginResponseTimeout                 : int32
+                                                The amount of seconds to wait when
+                                                waiting for the origin reply.
+                                                Otherwise the request will fail or
+                                                retry.
+        UseStaleWhileUpdating                 : boolean
+                                                Determines if we should use stale
+                                                cache while cache is updating
+        UseStaleWhileOffline                  : boolean
+                                                Determines if we should use stale
+                                                cache while the origin is offline
+        OriginRetry5XXResponses               : boolean
+                                                Determines if we should retry the
+                                                request in case of a 5XX response.
+        OriginRetryConnectionTimeout          : boolean
+                                                Determines if we should retry the
+                                                request in case of a connection
+                                                timeout.
+        OriginRetryResponseTimeout            : boolean
+                                                Determines if we should retry the
+                                                request in case of a response
+                                                timeout.
+        OriginRetryDelay                      : int32
+                                                Determines the amount of time that
+                                                the CDN should wait before retrying
+                                                an origin request.
+        QueryStringVaryParameters             : array of strings
+                                                Contains the list of vary parameters
+                                                that will be used for vary cache by
+                                                query string. If empty, all
+                                                parameters will be used to construct
+                                                the key
+        OriginShieldEnableConcurrencyLimit    : boolean
+                                                Determines if the origin shield
+                                                concurrency limit is enabled.
+        OriginShieldMaxConcurrentRequests     : int32
+                                                Determines the number of maximum
+                                                concurrent requests allowed to the
+                                                origin.
+        EnableCookieVary                      : boolean
+                                                Determines if the Cookie Vary
+                                                feature is enabled.
+        CookieVaryParameters                  : array of strings
+                                                Contains the list of vary parameters
+                                                that will be used for vary cache by
+                                                cookie string. If empty, cookie vary
+                                                will not be used.
+        EnableSafeHop                         : boolean
+        OriginShieldQueueMaxWaitTime          : int32
+                                                Determines the max queue wait time
+        OriginShieldMaxQueuedRequests         : int32
+                                                Determines the max number of origin
+                                                requests that will remain in the
+                                                queue
+        UseBackgroundUpdate                   : boolean
+                                                Determines if cache update is
+                                                performed in the background.
+        EnableAutoSSL                         : boolean
+                                                If set to true, any hostnames added
+                                                to this Pull Zone will automatically
+                                                enable SSL.
+        LogAnonymizationType                  : integer
+                                                Sets the log anonymization type for
+                                                this pull zone
+        LogFormat                             : integer
+        LogForwardingFormat                   : integer
+        ShieldDDosProtectionType              : integer
+        ShieldDDosProtectionEnabled           : boolean
 
         """
         values = json.dumps(
@@ -824,45 +1063,110 @@ class CDN:
                 "PullZoneID": PullZoneID,
                 "OriginUrl": OriginUrl,
                 "AllowedReferrers": AllowedReferrers,
+                "BlockedReferrers": BlockedReferrers,
                 "BlockedIps": BlockedIps,
-                "EnableCacheSlice": EnableCacheSlice,
                 "EnableGeoZoneUS": EnableGeoZoneUS,
                 "EnableGeoZoneEU": EnableGeoZoneEU,
                 "EnableGeoZoneASIA": EnableGeoZoneASIA,
                 "EnableGeoZoneSA": EnableGeoZoneSA,
                 "EnableGeoZoneAF": EnableGeoZoneAF,
+                "BlockRootPathAccess": BlockRootPathAccess,
+                "BlockPostRequests": BlockPostRequests,
+                "EnableQueryStringOrdering": EnableQueryStringOrdering,
+                "EnableWebpVary": EnableWebpVary,
+                "EnableAvifVary": EnableAvifVary,
+                "EnableMobileVary": EnableMobileVary,
+                "EnableCountryCodeVary": EnableCountryCodeVary,
+                "EnableHostnameVary": EnableHostnameVary,
+                "EnableCacheSlice": EnableCacheSlice,
                 "ZoneSecurityEnabled": ZoneSecurityEnabled,
-                "ZoneSecurityIncludeHashRemoteIP": IncludeHashRemoteIP,
+                "ZoneSecurityIncludeHashRemoteIP": ZoneSecurityIncludeHashRemoteIP,
                 "IgnoreQueryStrings": IgnoreQueryStrings,
                 "MonthlyBandwidthLimit": MonthlyBandwidthLimit,
-                "AccessControlOriginHeaderExtensions": OriginHeaderExtensions,
-                "EnableAccessControlOriginHeader": EnableOriginHeader,
-                "BlockRootPathAccess": BlockRootPathAccess,
-                "EnableWebpVary": EnableWebpVary,
-                "EnableHostnameVary": EnableHostnameVary,
-                "EnableCountryCodeVary": EnableCountryCodeVary,
-                "EnableLogging": EnableLogging,
+                "AccessControlOriginHeaderExtensions": AccessControlOriginHeaderExtensions,
+                "EnableAccessControlOriginHeader": EnableAccessControlOriginHeader,
                 "DisableCookies": DisableCookies,
                 "BudgetRedirectedCountries": BudgetRedirectedCountries,
                 "BlockedCountries": BlockedCountries,
-                "EnableOriginShield": EnableOriginShield,
-                "EnableQueryStringOrdering": EnableQueryStringOrdering,
-                "CacheErrorResponses": CacheErrorResponses,
-                "OriginShieldZoneCode": OriginShieldZoneCode,
-                "AddCanonicalHeader": AddCanonicalHeader,
                 "CacheControlMaxAgeOverride": CacheControlMaxAgeOverride,
+                "CacheControlBrowserMaxAgeOverride": CacheControlBrowserMaxAgeOverride,
                 "AddHostHeader": AddHostHeader,
+                "AddCanonicalHeader": AddCanonicalHeader,
+                "EnableLogging": EnableLogging,
+                "LoggingIPAnonymizationEnabled": LoggingIPAnonymizationEnabled,
+                "PermaCacheStorageZoneId": PermaCacheStorageZoneId,
                 "AWSSigningEnabled": AWSSigningEnabled,
                 "AWSSigningKey": AWSSigningKey,
                 "AWSSigningRegionName": AWSSigningRegionName,
                 "AWSSigningSecret": AWSSigningSecret,
+                "EnableOriginShield": EnableOriginShield,
+                "OriginShieldZoneCode": OriginShieldZoneCode,
                 "EnableTLS1": EnableTLS1,
-                "LoggingSaveToStorage": LoggingSaveToStorage,
-                "LoggingStorageZoneId": LoggingStorageZoneId,
+                "EnableTLS1_1": EnableTLS1_1,
+                "CacheErrorResponses": CacheErrorResponses,
+                "VerifyOriginSSL": VerifyOriginSSL,
                 "LogForwardingEnabled": LogForwardingEnabled,
                 "LogForwardingHostname": LogForwardingHostname,
                 "LogForwardingPort": LogForwardingPort,
                 "LogForwardingToken": LogForwardingToken,
+                "LogForwardingProtocol": LogForwardingProtocol,
+                "LoggingSaveToStorage": LoggingSaveToStorage,
+                "LoggingStorageZoneId": LoggingStorageZoneId,
+                "FollowRedirects": FollowRedirects,
+                "ConnectionLimitPerIPCount": ConnectionLimitPerIPCount,
+                "RequestLimit": RequestLimit,
+                "WAFEnabled": WAFEnabled,
+                "WAFDisabledRuleGroups": WAFDisabledRuleGroups,
+                "WAFDisabledRules": WAFDisabledRules,
+                "WAFEnableRequestHeaderLogging": WAFEnableRequestHeaderLogging,
+                "WAFRequestHeaderIgnores": WAFRequestHeaderIgnores,
+                "ErrorPageEnableCustomCode": ErrorPageEnableCustomCode,
+                "ErrorPageCustomCode": ErrorPageCustomCode,
+                "ErrorPageEnableStatuspageWidget": ErrorPageEnableStatuspageWidget,
+                "ErrorPageStatuspageCode": ErrorPageStatuspageCode,
+                "ErrorPageWhitelabel": ErrorPageWhitelabel,
+                "OptimizerEnabled": OptimizerEnabled,
+                "OptimizerDesktopMaxWidth": OptimizerDesktopMaxWidth,
+                "OptimizerMobileMaxWidth": OptimizerMobileMaxWidth,
+                "OptimizerImageQuality": OptimizerImageQuality,
+                "OptimizerMobileImageQuality": OptimizerMobileImageQuality,
+                "OptimizerEnableWebP": OptimizerEnableWebP,
+                "OptimizerEnableManipulationEngine": OptimizerEnableManipulationEngine,
+                "OptimizerMinifyCSS": OptimizerMinifyCSS,
+                "OptimizerMinifyJavaScript": OptimizerMinifyJavaScript,
+                "OptimizerWatermarkEnabled": OptimizerWatermarkEnabled,
+                "OptimizerWatermarkUrl": OptimizerWatermarkUrl,
+                "OptimizerWatermarkPosition": OptimizerWatermarkPosition,
+                "OptimizerWatermarkOffset": OptimizerWatermarkOffset,
+                "OptimizerWatermarkMinImageSize": OptimizerWatermarkMinImageSize,
+                "OptimizerAutomaticOptimizationEnabled": OptimizerAutomaticOptimizationEnabled,
+                "OptimizerClasses": OptimizerClasses,
+                "OptimizerForceClasses": OptimizerForceClasses,
+                "Type": Type,
+                "OriginRetries": OriginRetries,
+                "OriginConnectTimeout": OriginConnectTimeout,
+                "OriginResponseTimeout": OriginResponseTimeout,
+                "UseStaleWhileUpdating": UseStaleWhileUpdating,
+                "UseStaleWhileOffline": UseStaleWhileOffline,
+                "OriginRetry5XXResponses": OriginRetry5XXResponses,
+                "OriginRetryConnectionTimeout": OriginRetryConnectionTimeout,
+                "OriginRetryResponseTimeout": OriginRetryResponseTimeout,
+                "OriginRetryDelay": OriginRetryDelay,
+                "QueryStringVaryParameters": QueryStringVaryParameters,
+                "OriginShieldEnableConcurrencyLimit": OriginShieldEnableConcurrencyLimit,
+                "OriginShieldMaxConcurrentRequests": OriginShieldMaxConcurrentRequests,
+                "EnableCookieVary": EnableCookieVary,
+                "CookieVaryParameters": CookieVaryParameters,
+                "EnableSafeHop": EnableSafeHop,
+                "OriginShieldQueueMaxWaitTime": OriginShieldQueueMaxWaitTime,
+                "OriginShieldMaxQueuedRequests": OriginShieldMaxQueuedRequests,
+                "UseBackgroundUpdate": UseBackgroundUpdate,
+                "EnableAutoSSL": EnableAutoSSL,
+                "LogAnonymizationType": LogAnonymizationType,
+                "LogFormat": LogFormat,
+                "LogForwardingFormat": LogForwardingFormat,
+                "ShieldDDosProtectionType": ShieldDDosProtectionType,
+                "ShieldDDosProtectionEnabled": ShieldDDosProtectionEnabled,
             }
         )
         try:
